@@ -5,6 +5,14 @@
 }
 
 body {
-    color: #fff;
-    background: #333;
+    background: #ffdf8c;
+}
+
+main {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 35px;
+    height: 100vh;
+    background: #fff;
+    border-radius: 10px 10px 0px 0px;
 }

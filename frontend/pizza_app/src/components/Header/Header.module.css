@@ -1,0 +1,76 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 125px;
+    border-bottom: solid 1px #EAEAEA;
+}
+
+.logoSection {
+    display: flex;
+    flex: 1;
+}
+
+.logoImage {
+    width: 50px;
+    height: 50px;
+    margin-left: 25px;
+}
+
+.infoBlock {
+    margin-left: 17px;
+}
+
+.mainPart{
+    display: block;
+    margin-bottom: 5px;
+    font-size: 23px;
+    font-weight: 550;
+}
+
+.secondPart {
+    font-size: 14px;
+    color: grey;
+}
+
+.searchSection {
+    display: flex;
+    justify-content: center;
+    flex: 1.5;
+}
+
+.searchForm {
+    width: 80%;
+    border: solid 1px lightgrey;
+    padding: 5px 0px 5px 10px;
+    font-size: 16px;
+    height: 27px;
+    border-radius: 12px;
+    outline: none;
+
+}
+
+.cartSection {
+    flex: 0.5;
+    background: #fe5f1e;
+    color: #fff;
+    height: 60px;
+    margin-right: 25px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.totalSumOrder {
+    margin-right: 10px;
+    border-right: solid 1px;
+    width: 35px;
+    font-size: 16px;
+}
+
+.itemCount {
+    font-size: 16px;
+    margin-top: 2px;
+    margin-left: 2px;
+}

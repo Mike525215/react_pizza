@@ -1,7 +1,12 @@
 import './App.css';
+import {Header} from './components/Header/Header';
 
 const App = () => {
-    return <h1>Welcome to ReactJS</h1>;
+    return (
+        <main>
+            <Header />
+        </main>
+    )
 };
 
-export {App};
+export {App}
