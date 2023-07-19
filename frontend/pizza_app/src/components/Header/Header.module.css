@@ -23,14 +23,15 @@ header {
 
 .mainPart{
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
     font-size: 23px;
-    font-weight: 550;
+    font-weight: 800;
 }
 
 .secondPart {
     font-size: 14px;
     color: grey;
+    font-weight: 600;
 }
 
 .searchSection {

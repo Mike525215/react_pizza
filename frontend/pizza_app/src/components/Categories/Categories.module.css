@@ -1,0 +1,42 @@
+.wrapper {
+    display: flex;
+    height: 100%;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.categories {
+    display: block;
+    overflow: auto;
+    width: 785px;
+}
+
+.categoryBlock {
+    display: flex;
+    overflow: auto;
+    margin-right: 10px;
+    align-items: center;
+    overflow: auto;
+}
+
+.category {
+    padding: 10px 30px;
+    background: #f9f9f9;
+    list-style: none;
+    margin-right: 25px;
+    display: flex;
+    font-size: 18px;
+    font-weight: 600;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+
+}
+.sortBlock {
+    width: 160px;
+    height: 20px;
+    background: pink;
+    margin-left: 20px;
+    display: block;
+}
