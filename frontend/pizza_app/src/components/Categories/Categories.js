@@ -11,7 +11,7 @@ const Categories = () => {
         <div className={s.wrapper}>
             <div className={s.categories}>
                 <ul className={s.categoryBlock}>
-                    {categories.map(cat => <li className={selected === cat.id ? s.category + ' ' + s.selected : s.category}
+                    {categories.map(cat => <li key={cat.id} className={selected === cat.id ? s.category + ' ' + s.selected : s.category}
                                                onClick={() => {
                                                    dispatcher(setCategory(cat.name));
                                                    dispatcher(setSelected(cat.id));
