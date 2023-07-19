@@ -1,9 +1,12 @@
 import s from './Pizza.module.css';
 import {useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {setCount} from '../../../redux/slices/cartSlice';
 
 const Pizza = (props) => {
     const [selectedWeight, setWeight] = useState(1);
     const [selectedLong, setLong] = useState(1);
+    const dispatcher = useDispatch();
     return (
         <div className={s.pizza}>
             <img src={props.image}
@@ -25,7 +28,8 @@ const Pizza = (props) => {
             </div>
             <div className={s.pizzaPrice}>
                 <span className={s.part}>От 10 $</span>
-                <span className={s.part + ' ' + s.addBtn}>+ Добавить</span>
+                <span className={s.part + ' ' + s.addBtn}
+                      onClick={() => dispatcher(setCount())}>+ Добавить</span>
             </div>
         </div>
     );
