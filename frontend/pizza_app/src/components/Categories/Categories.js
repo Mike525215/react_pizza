@@ -13,7 +13,9 @@ const Categories = () => {
                 </ul>
             </div>
             <div className={s.sortBlock}>
-
+                <img src="https://cdn-icons-png.flaticon.com/512/4655/4655143.png" alt="icon"
+                     className={s.icon} />
+                <span>Sorted by</span>
             </div>
         </div>
     );
