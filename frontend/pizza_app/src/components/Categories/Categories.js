@@ -1,20 +1,21 @@
 import s from './Categories.module.css';
 import {useDispatch, useSelector} from 'react-redux';
-import {setCategory} from '../../redux/slices/categorySlice';
+import {setCategory, setSelected} from '../../redux/slices/categorySlice';
 
 const Categories = () => {
-    const category = useSelector(state => state.category.value);
+    const selected = useSelector(state => state.category.selected);
+    const categories = [{id: 1, name: "Все"}, {id: 2, name: "Мясные"}, {id: 3, name: "Вегетерианские"},
+                        {id: 4, name: "Гриль"}, {id: 5, name: "Острые"}, {id: 6, name: "Закрытые"}];
     const dispatcher = useDispatch();
     return (
         <div className={s.wrapper}>
             <div className={s.categories}>
                 <ul className={s.categoryBlock}>
-                    <li className={s.category} onClick={() => { dispatcher(setCategory('Все')) }}>Все</li>
-                    <li className={s.category} onClick={() => { dispatcher(setCategory('Мясные')) }}>Мясные</li>
-                    <li className={s.category} onClick={() => { dispatcher(setCategory('Вегетерианские')) }}>Вегетерианские</li>
-                    <li className={s.category} onClick={() => { dispatcher(setCategory('Гриль')) }}>Гриль</li>
-                    <li className={s.category} onClick={() => { dispatcher(setCategory('Острые')) }}>Острые</li>
-                    <li className={s.category} onClick={() => { dispatcher(setCategory('Закрытые')) }}>Закрытые</li>
+                    {categories.map(cat => <li className={selected === cat.id ? s.category + ' ' + s.selected : s.category}
+                                               onClick={() => {
+                                                   dispatcher(setCategory(cat.name));
+                                                   dispatcher(setSelected(cat.id));
+                                               }}>{cat.name}</li>)}
                 </ul>
             </div>
             <div className={s.sortBlock}>
