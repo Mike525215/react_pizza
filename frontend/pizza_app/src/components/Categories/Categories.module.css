@@ -96,7 +96,7 @@
     .categories {
         display: block;
         overflow: auto;
-        width: 80%;
+        width: 67%;
     }
 
     .category {
@@ -108,9 +108,8 @@
         width: 125px;
         height: 20px;
         margin-left: 10px;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
+        font-weight: 500;
+        font-size: 16px;
         margin-top: 7px;
     }
 
