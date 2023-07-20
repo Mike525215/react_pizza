@@ -1,3 +1,5 @@
 from django.urls import path
-
-urlpatterns = []
+from .views import *
+urlpatterns = [
+    path('', PizzaAPIView.as_view())
+]
