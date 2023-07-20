@@ -47,12 +47,46 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    cursor: pointer;
 }
 
 .icon {
     width: 18px;
     height: 18px;
     margin-right: 10px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.rot{
+    transform: rotate(180deg) ;
+}
+
+.sortBy {
+    color: #fe5f1e;
+    font-weight: 600;
+}
+
+.dropMenu {
+    position: absolute;
+    top: 260px;
+    box-shadow: 1px 1px 8px grey;
+    width: 150px;
+    height: 200px;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.close {
+    display: none;
+}
+
+.sortField {
+    list-style: none;
+    display: flex;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 15px;
 }
 
 @media (max-width: 715px) {

@@ -4,7 +4,9 @@ export const categorySlice = createSlice({
     name: "category",
     initialState: {
         value: "Все",
-        selected: 1
+        selected: 1,
+        closed: true,
+        sortName: "SORTED BY"
     },
     reducers: {
         setCategory: (state, action) => {
@@ -12,9 +14,15 @@ export const categorySlice = createSlice({
         },
         setSelected: (state, action) => {
             state.selected = action.payload;
+        },
+        setClose: (state) => {
+            state.closed === true ? state.closed = false : state.closed = true
+        },
+        setSortedName: (state, action) => {
+            state.sortName = action.payload;
         }
     }
 });
 
-export const { setCategory, setSelected } = categorySlice.actions;
+export const { setCategory, setSelected, setClose, setSortedName } = categorySlice.actions;
 export default categorySlice.reducer;
