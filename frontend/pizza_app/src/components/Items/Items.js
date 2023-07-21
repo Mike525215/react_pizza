@@ -1,17 +1,29 @@
 import s from './Items.module.css';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {Pizza} from './Pizza/Pizza';
-
+import {setArray} from '../../redux/slices/pizzaSlice';
+import {useEffect} from 'react';
+import axios from 'axios';
 const Items = () => {
     const category = useSelector(state => state.category.value);
-    const pizzas = [{id: 1, name: "Маргарита", image: "https://staticy.dominospizza.ru/api/medium/ProductOsg/Web/CHIPES/NULL/NULL/RU"},
-                    {id: 2, name: "Маргарита", image: "https://staticy.dominospizza.ru/api/medium/ProductOsg/Web/CHIPES/NULL/NULL/RU"},
-                    {id: 3, name: "Маргарита", image: "https://staticy.dominospizza.ru/api/medium/ProductOsg/Web/CHIPES/NULL/NULL/RU"}];
+    const pizza = useSelector(state => state.pizza.pizzaArray);
+    const dispatcher = useDispatch();
+
+    const pizzaList = async () => {
+        const request = await axios.get('http://127.0.0.1:8000/api/v1/pizza/');
+        const response = request.data;
+        dispatcher(setArray(response));
+    };
+
+    useEffect(() => {
+        pizzaList();
+    }, []);
+
     return (
         <div className={s.pizzaList}>
             <span className={s.title}>{category} пиццы</span>
             <div className={s.content}>
-                {pizzas.map(pizza => <Pizza name={pizza.name} image={pizza.image} key={pizza.id} />)}
+                {pizza.map(pizza => <Pizza pizza={pizza} key={pizza.id} />)}
             </div>
         </div>
     );

@@ -9,9 +9,9 @@ const Pizza = (props) => {
     const dispatcher = useDispatch();
     return (
         <div className={s.pizza}>
-            <img src={props.image}
+            <img src={props.pizza.image}
                  alt="pizza" className={s.pizzaImage} />
-            <span className={s.pizzaTitle}>{props.name}</span>
+            <span className={s.pizzaTitle}>{props.pizza.title}</span>
             <div className={s.pizzaWeight}>
                 <span className={selectedWeight === 1 ? s.weightStyle + ' ' + s.selected : s.weightStyle}
                       onClick={() => setWeight(1)}>тонкое</span>
@@ -27,7 +27,7 @@ const Pizza = (props) => {
                       onClick={() => setLong(3)}>40 см</span>
             </div>
             <div className={s.pizzaPrice}>
-                <span className={s.part}>От 10 $</span>
+                <span className={s.part}>От {props.pizza.price} $</span>
                 <span className={s.part + ' ' + s.addBtn}
                       onClick={() => dispatcher(setCount())}>+ Добавить</span>
             </div>
