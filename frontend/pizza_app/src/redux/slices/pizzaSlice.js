@@ -6,7 +6,7 @@ export const pizzaSlice = createSlice({
         pizzaArray: []
     },
     reducers: {
-        setArray: (state, action) {
+        setArray: (state, action) => {
             state.pizzaArray = action.payload
         }
     }
