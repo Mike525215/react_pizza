@@ -3,7 +3,7 @@ from django.db import models
 class Pizza(models.Model):
     title = models.CharField(max_length=50)
     price = models.IntegerField()
-    image = models.ImageField(upload_to='pizzas/')
+    image = models.URLField()
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
 
     def __str__(self):
