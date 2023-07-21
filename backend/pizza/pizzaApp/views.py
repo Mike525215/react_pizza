@@ -7,3 +7,7 @@ from .serializers import *
 class PizzaAPIView(ListAPIView):
     queryset = Pizza.objects.all()
     serializer_class = PizzaSerializer
+
+class CategoryAPIView(ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
