@@ -17,6 +17,27 @@
     row-gap: 20px;
 }
 
+.errorMessage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.titleMessage {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.innerMessage,
+.secondaryMessage{
+    font-size: 22px;
+    margin-top: 10px;
+}
+
 @media (max-width: 850px) {
     .content {
         grid-template-columns: 1fr 1fr;
