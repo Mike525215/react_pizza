@@ -4,7 +4,6 @@ import {Categories} from './components/Categories/Categories';
 import {Items} from './components/Items/Items';
 import {Provider} from 'react-redux';
 import {store} from './redux/store';
-
 const App = () => {
 
     return (
@@ -15,7 +14,7 @@ const App = () => {
                 <Items />
             </main>
         </Provider>
-    )
+    );
 };
 
 export {App};
