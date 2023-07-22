@@ -8,7 +8,6 @@ const Items = () => {
     const category = useSelector(state => state.category.value);
     const filteredArray = useSelector(state => state.pizza.filteredArray);
     const dispatcher = useDispatch();
-
     const pizzaList = async () => {
         const request = await axios.get('http://127.0.0.1:8000/api/v1/pizza/');
         const response = request.data;
