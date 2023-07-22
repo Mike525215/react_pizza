@@ -1,9 +1,7 @@
 import s from './Categories.module.css';
 import {useDispatch, useSelector} from 'react-redux';
-import {useEffect} from 'react';
 import {setCategory, setSelected, setClose, setSortedName} from '../../redux/slices/categorySlice';
 import {setFilteredArray} from '../../redux/slices/pizzaSlice';
-import axios from 'axios';
 
 const Categories = () => {
     const selected = useSelector(state => state.category.selected);
@@ -15,7 +13,6 @@ const Categories = () => {
                         {name: 'Гриль', id: 4}, {name: 'Острые', id: 5}, {name: 'Закрытые', id: 6}];
 
     const dispatcher = useDispatch();
-
     return (
 
         <div className={s.wrapper}>
