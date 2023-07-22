@@ -7,6 +7,7 @@ const Pizza = (props) => {
     const [selectedWeight, setWeight] = useState(1);
     const [selectedLong, setLong] = useState(1);
     const dispatcher = useDispatch();
+
     return (
         <div className={s.pizza}>
             <img src={props.pizza.image}
