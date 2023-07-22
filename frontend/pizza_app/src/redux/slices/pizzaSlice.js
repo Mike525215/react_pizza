@@ -4,7 +4,8 @@ export const pizzaSlice = createSlice({
     name: 'pizzaList',
     initialState: {
         pizzaArray: [],
-        filteredArray: []
+        filteredArray: [],
+        error: false
     },
     reducers: {
         setArray: (state, action) => {
@@ -12,10 +13,13 @@ export const pizzaSlice = createSlice({
         },
         setFilteredArray: (state, action) => {
             state.filteredArray = action.payload
+        },
+        setError: (state, action) => {
+            state.error = action.payload;
         }
     }
 });
 
-export const {setArray, setFilteredArray} = pizzaSlice.actions;
+export const {setArray, setFilteredArray, setError} = pizzaSlice.actions;
 
 export default pizzaSlice.reducer;
