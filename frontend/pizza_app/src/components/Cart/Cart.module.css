@@ -55,6 +55,7 @@
 .backLink {
     background: #333;
     padding: 10px 30px;
+    max-width: 150px;
     color: #fff;
     font-size: 17px;
     text-decoration: none;
@@ -62,5 +63,12 @@
     align-items: center;
     justify-content: center;
     border-radius: 20px;
-    margin-top: 50px;
+    margin: 0 auto;
+    margin-top: 25px;
+}
+
+.pizzaList {
+    display: grid;
+    grid-template-column: 1fr;
+    row-gap: 20px;
 }
