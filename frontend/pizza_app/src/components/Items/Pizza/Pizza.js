@@ -1,7 +1,7 @@
 import s from './Pizza.module.css';
 import {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {setCount, setTotalSum} from '../../../redux/slices/cartSlice';
+import {setCount, setTotalSum, addPizza} from '../../../redux/slices/cartSlice';
 
 const Pizza = (props) => {
     const [selectedWeight, setWeight] = useState(1);
@@ -43,6 +43,10 @@ const Pizza = (props) => {
                       onClick={() => {
                           dispatcher(setCount());
                           dispatcher(setTotalSum(totalSum + props.pizza.price));
+                          dispatcher(addPizza({title: props.pizza.title, price: totalSum + props.pizza.price,
+                                    image: props.pizza.image,
+                                    weight: selectedWeight === 1 ? 'тонкое' : 'традиционное',
+                                    long: selectedLong === 1 ? 26 : selectedLong === 2 ? 30 : 40}));
                       }}>+ Добавить</span>
             </div>
         </div>
