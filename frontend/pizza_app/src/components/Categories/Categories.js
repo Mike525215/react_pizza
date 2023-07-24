@@ -2,6 +2,7 @@ import s from './Categories.module.css';
 import {useDispatch, useSelector} from 'react-redux';
 import {setCategory, setSelected, setClose, setSortedName} from '../../redux/slices/categorySlice';
 import {setFilteredArray} from '../../redux/slices/pizzaSlice';
+import order from 'lodash.orderby';
 
 const Categories = () => {
     const selected = useSelector(state => state.category.selected);
@@ -40,8 +41,15 @@ const Categories = () => {
                     {
                         sortArray.map((name, index) => {
                             return <li key={index} className={s.sortField} onClick={() => {
-                                dispatcher(setSortedName(name))
-                                dispatcher(setClose())
+                                dispatcher(setSortedName(name));
+                                dispatcher(setClose());
+                                index === 0 ?
+                                dispatcher(setFilteredArray(order(pizzaArray, ['price'], ['asc'])))
+                                : index === 1 ?
+                                dispatcher(setFilteredArray(order(pizzaArray, ['price'], ['desc'])))
+                                : index === 2 ?
+                                dispatcher(setFilteredArray(order(pizzaArray, ['name'], ['asc'])))
+                                : dispatcher(setFilteredArray(order(pizzaArray, ['name'], ['desc'])))
                                 }}>{name}</li>
                         })
                     }

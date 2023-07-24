@@ -1,9 +1,14 @@
 import s from './Header.module.css';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import {useState} from 'react';
 import {Link} from 'react-router-dom';
+import {setFilteredArray} from '../../redux/slices/pizzaSlice';
 const Header = () => {
     const count = useSelector(state => state.cart.count);
     const totalSum = useSelector(state => state.cart.totalSum);
+    const pizzaArray = useSelector(state => state.pizza.pizzaArray);
+    const dispatcher = useDispatch();
+    const [value, setValue] = useState('');
     return (
         <header>
             <section className={s.logoSection}>
@@ -15,7 +20,12 @@ const Header = () => {
                 </div>
             </section>
             <section className={s.searchSection}>
-                <input className={s.searchForm} type="text" placeholder="Search pizza..."/>
+                <input className={s.searchForm} type="text" placeholder="Search pizza..."
+                       onChange={(event) => {
+                           setValue(event.target.value);
+                           dispatcher(setFilteredArray(pizzaArray.filter((pizza) => pizza.title.toLowerCase().includes(value.toLowerCase))));
+                       }} value={value} />
+
             </section>
             <Link to="/cart/" className={s.cartLink}><section className={s.cartSection}>
                     <span className={s.totalSumOrder}>{totalSum}$</span>
