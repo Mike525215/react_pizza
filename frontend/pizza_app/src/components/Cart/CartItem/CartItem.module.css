@@ -40,6 +40,21 @@
     display: block;
 }
 
+.increase,
+.decrease {
+    width: 30px;
+    height: 30px;
+    background: #EAEAEA;
+    font-size: 23px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.pizzaAmount {
+    margin: 0px 20px;
+    font-size: 25px;
+}
+
 .deleteBtn {
     border: none;
     height: 30px;
@@ -67,6 +82,10 @@
 
     .deleteBtn {
         margin-bottom: 25px;
+    }
+
+    .setCountBlock {
+        margin: 20px 0px;
     }
 }
 
