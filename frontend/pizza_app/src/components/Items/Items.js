@@ -27,7 +27,7 @@ const Items = () => {
                    <span className={s.secondaryMessage}>Попробуйте повторить попытку позже.</span>
                </div> :
             html = <div className={s.content}>
-                        {filteredArray.map(pizza => <Pizza pizza={pizza} key={pizza.id} />)}
+                        {filteredArray.map((pizza, index) => <Pizza pizza={pizza} key={index} />)}
                     </div>;
 
     useEffect(() => {
