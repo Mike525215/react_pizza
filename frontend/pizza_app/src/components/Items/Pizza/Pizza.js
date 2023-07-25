@@ -47,6 +47,7 @@ const Pizza = (props) => {
                                     image: props.pizza.image,
                                     weight: selectedWeight === 1 ? 'тонкое' : 'традиционное',
                                     long: selectedLong === 1 ? 26 : selectedLong === 2 ? 30 : 40}));
+                          setSum(0);
                       }}>+ Добавить</span>
             </div>
         </div>
