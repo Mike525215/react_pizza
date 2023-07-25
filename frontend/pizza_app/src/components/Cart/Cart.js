@@ -17,7 +17,7 @@ const Cart = () => {
                 <img src="https://react-pizza-v2.vercel.app/static/media/empty-cart.db905d1f4b063162f25b.png" alt="" className={s.emptyCartImage} />
             </section>
     :
-    html = <div className={s.pizzaList}>{cartArray.map((pizza, index) => <CartItem key={index} pizza={pizza} />)}</div>;
+    html = <div className={s.pizzaList}>{cartArray.map((pizza, index) => <CartItem key={index} pizza={pizza} id={index} />)}</div>;
     return (
         <main>
             <header>
