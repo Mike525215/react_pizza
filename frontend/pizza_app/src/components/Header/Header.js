@@ -1,14 +1,17 @@
 import s from './Header.module.css';
 import {useSelector, useDispatch} from 'react-redux';
-import {useState} from 'react';
+import {useState, useRef} from 'react';
 import {Link} from 'react-router-dom';
 import {setFilteredArray} from '../../redux/slices/pizzaSlice';
+import {setCategory, setSelected, setClose, setSortedName} from '../../redux/slices/categorySlice';
 const Header = () => {
     const count = useSelector(state => state.cart.count);
     const totalSum = useSelector(state => state.cart.totalSum);
+    const filteredArray = useSelector(state => state.pizza.filteredArray);
     const pizzaArray = useSelector(state => state.pizza.pizzaArray);
     const dispatcher = useDispatch();
     const [value, setValue] = useState('');
+    const ref = useRef();
     return (
         <header>
             <section className={s.logoSection}>
@@ -20,12 +23,29 @@ const Header = () => {
                 </div>
             </section>
             <section className={s.searchSection}>
-                <input className={s.searchForm} type="text" placeholder="Search pizza..."
-                       onChange={(event) => {
-                           setValue(event.target.value);
-                           dispatcher(setFilteredArray(pizzaArray.filter((pizza) => pizza.title.toLowerCase().includes(value.toLowerCase))));
-                       }} value={value} />
-
+                <button onClick={() => {
+                    value.length
+                    ?
+                    dispatcher(setFilteredArray(filteredArray.filter(pizza => pizza.title.toLowerCase().includes(value.toLowerCase()))))
+                    :
+                    dispatcher(setFilteredArray(pizzaArray))
+                    dispatcher(setCategory('Все'))
+                    dispatcher(setSelected(1))
+                    dispatcher(setClose(true))
+                    dispatcher(setSortedName('sorted by'))
+                }}>
+                <img src="https://img.icons8.com/?size=512&id=7eX13e1GI7bn&format=png" alt="search"
+                     className={s.searchBtn} />
+                </button>
+                <input className={s.searchForm} ref={ref} type="text" placeholder="Search pizza..."
+                       onChange={(event) => setValue(event.target.value)} value={value} />
+                <button onClick={() => {
+                    setValue('');
+                    ref.current.focus();
+                }}>
+                <img src="https://www.svgrepo.com/show/80301/cross.svg" alt="clear"
+                     className={s.clearBtn} />
+                </button>
             </section>
             <Link to="/cart/" className={s.cartLink}><section className={s.cartSection}>
                     <span className={s.totalSumOrder}>{totalSum}$</span>
