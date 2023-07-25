@@ -15,8 +15,8 @@ export const categorySlice = createSlice({
         setSelected: (state, action) => {
             state.selected = action.payload;
         },
-        setClose: (state) => {
-            state.closed === true ? state.closed = false : state.closed = true
+        setClose: (state, action) => {
+            state.closed = action.payload;
         },
         setSortedName: (state, action) => {
             state.sortName = action.payload;
