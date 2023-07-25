@@ -9,6 +9,7 @@ const Categories = () => {
     const sorted = useSelector(state => state.category.sortName);
     const closed = useSelector(state => state.category.closed);
     const pizzaArray = useSelector(state => state.pizza.pizzaArray);
+    const filteredArray = useSelector(state => state.pizza.filteredArray);
     const sortArray = ["price(ASC)", "price(DESC)", "name(ASC)", "name(DESC)"];
     const categories = [{name: 'Все', id: 1}, {name: 'Мясные', id: 2}, {name: 'Вегетерианские', id: 3},
                         {name: 'Гриль', id: 4}, {name: 'Острые', id: 5}, {name: 'Закрытые', id: 6}];
@@ -24,6 +25,7 @@ const Categories = () => {
                                                onClick={() => {
                                                    dispatcher(setCategory(cat.name));
                                                    dispatcher(setSelected(cat.id));
+                                                   dispatcher(setSortedName("sorted by"));
                                                    cat.name === 'Все'?
                                                    dispatcher(setFilteredArray(pizzaArray))
                                                    :
@@ -42,14 +44,14 @@ const Categories = () => {
                         sortArray.map((name, index) => {
                             return <li key={index} className={s.sortField} onClick={() => {
                                 dispatcher(setSortedName(name));
-                                dispatcher(setClose());
+                                dispatcher(setClose(true));
                                 index === 0 ?
-                                dispatcher(setFilteredArray(order(pizzaArray, ['price'], ['asc'])))
+                                dispatcher(setFilteredArray(order(filteredArray, ['price'], ['asc'])))
                                 : index === 1 ?
-                                dispatcher(setFilteredArray(order(pizzaArray, ['price'], ['desc'])))
+                                dispatcher(setFilteredArray(order(filteredArray, ['price'], ['desc'])))
                                 : index === 2 ?
-                                dispatcher(setFilteredArray(order(pizzaArray, ['name'], ['asc'])))
-                                : dispatcher(setFilteredArray(order(pizzaArray, ['name'], ['desc'])))
+                                dispatcher(setFilteredArray(order(filteredArray, ['name'], ['asc'])))
+                                : dispatcher(setFilteredArray(order(filteredArray, ['name'], ['desc'])))
                                 }}>{name}</li>
                         })
                     }
