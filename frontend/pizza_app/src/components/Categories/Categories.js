@@ -5,11 +5,8 @@ import {setFilteredArray} from '../../redux/slices/pizzaSlice';
 import order from 'lodash.orderby';
 
 const Categories = () => {
-    const selected = useSelector(state => state.category.selected);
-    const sorted = useSelector(state => state.category.sortName);
-    const closed = useSelector(state => state.category.closed);
-    const pizzaArray = useSelector(state => state.pizza.pizzaArray);
-    const filteredArray = useSelector(state => state.pizza.filteredArray);
+    const {selected, closed, sortName} = useSelector(state => state.category);
+    const {pizzaArray, filteredArray} = useSelector(state => state.pizza);
     const sortArray = ["price(ASC)", "price(DESC)", "name(ASC)", "name(DESC)"];
     const categories = [{name: 'Все', id: 1}, {name: 'Мясные', id: 2}, {name: 'Вегетерианские', id: 3},
                         {name: 'Гриль', id: 4}, {name: 'Острые', id: 5}, {name: 'Закрытые', id: 6}];
@@ -38,7 +35,7 @@ const Categories = () => {
                 <img src="https://cdn-icons-png.flaticon.com/512/4655/4655143.png" alt="icon"
                      className={closed === true ? s.icon : s.icon + ' ' + s.rot} />
                 <span className={s.sortBy}
-                      onClick={() => dispatcher(setClose())}>{sorted}</span>
+                      onClick={() => dispatcher(setClose())}>{sortName}</span>
                 <ul className={closed === true ? s.dropMenu + ' ' + s.close : s.dropMenu}>
                     {
                         sortArray.map((name, index) => {

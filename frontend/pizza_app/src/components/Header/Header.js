@@ -5,10 +5,8 @@ import {Link} from 'react-router-dom';
 import {setFilteredArray} from '../../redux/slices/pizzaSlice';
 import {setCategory, setSelected, setClose, setSortedName} from '../../redux/slices/categorySlice';
 const Header = () => {
-    const count = useSelector(state => state.cart.count);
-    const totalSum = useSelector(state => state.cart.totalSum);
-    const filteredArray = useSelector(state => state.pizza.filteredArray);
-    const pizzaArray = useSelector(state => state.pizza.pizzaArray);
+    const {count, totalSum} = useSelector(state => state.cart);
+    const {pizzaArray, filteredArray} = useSelector(state => state.pizza);
     const dispatcher = useDispatch();
     const [value, setValue] = useState('');
     const ref = useRef();

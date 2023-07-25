@@ -7,8 +7,7 @@ import axios from 'axios';
 
 const Items = () => {
     const category = useSelector(state => state.category.value);
-    const filteredArray = useSelector(state => state.pizza.filteredArray);
-    const error = useSelector(state => state.pizza.error)
+    const {filteredArray, error} = useSelector(state => state.pizza);
     const dispatcher = useDispatch();
     let html = '';
     const pizzaList = async () => {
