@@ -44,7 +44,7 @@ header {
 .searchForm {
     width: 60%;
     border: solid 1px lightgrey;
-    padding: 5px 0px 5px 45px;
+    padding: 5px 0px 5px 10px;
     font-size: 16px;
     height: 27px;
     border-radius: 12px;
@@ -58,19 +58,11 @@ button {
     cursor: pointer;
 }
 
-.searchBtn {
-    height: 22.5px;
-    width: 22.5px;
-    position: absolute;
-    left: 18%;
-    top: 8px;
-}
-
 .clearBtn {
     width: 13px;
     height: 13px;
     position: absolute;
-    right: 20%;
+    right: 21%;
     top: 14px;
 }
 
@@ -133,12 +125,8 @@ button {
     .searchForm {
         width: 70%;
     }
-
-    .searchBtn {
-        left: 12%;
-    }
     .clearBtn {
-        right: 14%;
+        right: 15%;
     }
 }
 
@@ -149,11 +137,8 @@ button {
     .searchForm {
         width: 80%;
     }
-    .searchBtn {
-        left: 7%;
-    }
     .clearBtn {
-        right: 9%;
+        right: 10%;
     }
 
 }
@@ -191,11 +176,8 @@ button {
         width: 60px;
         margin-left: 20px;
     }
-    .searchBtn {
-        left: 3%;
-    }
     .clearBtn {
-        right: 5%;
+        right: 6%;
     }
 
 }

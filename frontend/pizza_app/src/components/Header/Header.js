@@ -1,15 +1,46 @@
 import s from './Header.module.css';
 import {useSelector, useDispatch} from 'react-redux';
-import {useState, useRef} from 'react';
+import {useState, useRef, useCallback} from 'react';
 import {Link} from 'react-router-dom';
+import debounce from 'lodash.debounce';
+import axios from 'axios';
 import {setFilteredArray} from '../../redux/slices/pizzaSlice';
 import {setCategory, setSelected, setClose, setSortedName} from '../../redux/slices/categorySlice';
 const Header = () => {
     const {count, totalSum} = useSelector(state => state.cart);
-    const {pizzaArray, filteredArray} = useSelector(state => state.pizza);
+    const {pizzaArray} = useSelector(state => state.pizza);
     const dispatcher = useDispatch();
     const [value, setValue] = useState('');
     const ref = useRef();
+
+    const axiosPizza = async () => {
+        const changedValue = await value[0].toUpperCase() + value.slice(1, value.length).toLowerCase();
+        const request = await axios.get('http://127.0.0.1:8000/api/v1/pizza?search=' + changedValue);
+        const result = request.data;
+        dispatcher(setFilteredArray(result));
+    };
+
+    const searchPizza = useCallback(
+        debounce(() => {
+            axiosPizza();
+        }, 1000), []
+    );
+
+    const onChangeInput = (event) => {
+        setValue(event.target.value);
+        searchPizza();
+    };
+
+    const onClearInput = () => {
+        setValue('');
+        dispatcher(setFilteredArray(pizzaArray));
+        dispatcher(setCategory('Все'));
+        dispatcher(setSelected(1));
+        dispatcher(setClose(true));
+        dispatcher(setSortedName('sorted by'));
+        ref.current.focus();
+    };
+
     return (
         <header>
             <section className={s.logoSection}>
@@ -21,26 +52,9 @@ const Header = () => {
                 </div>
             </section>
             <section className={s.searchSection}>
-                <button onClick={() => {
-                    value.length
-                    ?
-                    dispatcher(setFilteredArray(filteredArray.filter(pizza => pizza.title.toLowerCase().includes(value.toLowerCase()))))
-                    :
-                    dispatcher(setFilteredArray(pizzaArray))
-                    dispatcher(setCategory('Все'))
-                    dispatcher(setSelected(1))
-                    dispatcher(setClose(true))
-                    dispatcher(setSortedName('sorted by'))
-                }}>
-                <img src="https://img.icons8.com/?size=512&id=7eX13e1GI7bn&format=png" alt="search"
-                     className={s.searchBtn} />
-                </button>
                 <input className={s.searchForm} ref={ref} type="text" placeholder="Search pizza..."
-                       onChange={(event) => setValue(event.target.value)} value={value} />
-                <button onClick={() => {
-                    setValue('');
-                    ref.current.focus();
-                }}>
+                       onChange={(event) => onChangeInput(event)} value={value} />
+                <button onClick={onClearInput}>
                 <img src="https://www.svgrepo.com/show/80301/cross.svg" alt="clear"
                      className={s.clearBtn} />
                 </button>
