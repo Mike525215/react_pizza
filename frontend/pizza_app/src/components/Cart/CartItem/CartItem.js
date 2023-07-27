@@ -1,19 +1,17 @@
 import s from './CartItem.module.css';
 import {useDispatch} from 'react-redux';
-import {useState} from 'react';
-import {deletePizza, setTotalSumDecr, setCountDecr} from '../../../redux/slices/cartSlice';
+import {deletePizza, setTotalAmountReduce, setTotalCountReduce} from '../../../redux/slices/cartSlice';
 
 const CartItem = (props) => {
     const dispatcher = useDispatch();
-    const [totalCount, setCount] = useState(0);
 
     return (
         <div className={s.pizzaCard}>
             <img src={props.pizza.image} alt="pizza" className={s.cardImage} />
             <div className={s.setCountBlock}>
-                    <button className={s.increase} onClick={() => setCount(totalCount + 1)}>+</button>
-                    <span className={s.pizzaAmount}>{totalCount}</span>
-                    <button className={s.decrease}  onClick={() => setCount(totalCount - 1)}>-</button>
+                    <button className={s.increase}>+</button>
+                    <span className={s.pizzaAmount}>{props.pizza.count}</span>
+                    <button className={s.decrease}>-</button>
             </div>
             <div className={s.infoBlock}>
                 <span className={s.title}>{props.pizza.title}</span>
@@ -22,8 +20,8 @@ const CartItem = (props) => {
                 <span className={s.long}>Длинна: {props.pizza.long} см</span>
                 <button className={s.deleteBtn} onClick={() => {
                     dispatcher(deletePizza(props.id));
-                    dispatcher(setTotalSumDecr(props.pizza.price));
-                    dispatcher(setCountDecr(1));
+                    dispatcher(setTotalAmountReduce(props.pizza.price * props.pizza.count));
+                    dispatcher(setTotalCountReduce(props.pizza.count));
                 }}>Удалить</button>
             </div>
         </div>
