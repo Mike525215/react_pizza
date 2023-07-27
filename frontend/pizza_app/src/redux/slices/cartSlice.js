@@ -8,27 +8,28 @@ export const cartSlice = createSlice({
         cartArray: []
     },
     reducers: {
-        setCount: (state) => {
+        setTotalCount: (state) => {
             state.count += 1
         },
-        setTotalSum: (state, action) => {
+        setTotalAmount: (state, action) => {
             state.totalSum += action.payload;
         },
         addPizza: (state, action) => {
-            state.cartArray.push(action.payload);
+            const item = state.cartArray.filter(obj => obj.id === action.payload.id && obj.title === action.payload.title && obj.weight === action.payload.weight && obj.long === action.payload.long);
+            item.length ? item[0].count++ : state.cartArray.push({...action.payload, count: 1});
         },
         deletePizza: (state, action) => {
             state.cartArray.splice(action.payload, 1);
         },
-        setTotalSumDecr: (state, action) => {
+        setTotalAmountReduce: (state, action) => {
             state.totalSum -= action.payload;
         },
-        setCountDecr: (state, action) => {
+        setTotalCountReduce: (state, action) => {
             state.count -= action.payload;
         }
     }
 
 });
 
-export const {setCount, setTotalSum, addPizza, deletePizza, setTotalSumDecr, setCountDecr} = cartSlice.actions;
+export const {setTotalCount, setTotalAmount, addPizza, deletePizza, setTotalAmountReduce, setTotalCountReduce} = cartSlice.actions;
 export default cartSlice.reducer;
