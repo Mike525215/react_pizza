@@ -62,4 +62,10 @@
     border-radius: 20px;
     color: #fe5f1e;
     padding: 5px 10px;
+    transition: background .4s ease-in-out, color .4s ease-in-out;
+}
+
+.addBtn:hover {
+    background: #fe5f1e;
+    color: #fff;
 }
