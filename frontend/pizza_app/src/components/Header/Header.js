@@ -5,24 +5,22 @@ import {Link} from 'react-router-dom';
 import debounce from 'lodash.debounce';
 import axios from 'axios';
 import {setFilteredArray} from '../../redux/slices/pizzaSlice';
-import {setCategory, setSelected, setClose, setSortedName} from '../../redux/slices/categorySlice';
+
 const Header = () => {
     const {count, totalSum} = useSelector(state => state.cart);
-    const {pizzaArray} = useSelector(state => state.pizza);
     const dispatcher = useDispatch();
     const [value, setValue] = useState('');
     const ref = useRef();
 
-    const axiosPizza = async () => {
-        const changedValue = await value[0].toUpperCase() + value.slice(1, value.length).toLowerCase();
-        const request = await axios.get('http://127.0.0.1:8000/api/v1/pizza?search=' + changedValue);
-        const result = request.data;
-        dispatcher(setFilteredArray(result));
+    const axiosPizza = async (value) => {
+        const request = await axios.get('http://127.0.0.1:8000/api/v1/pizza?search=' + value);
+        const response = request.data;
+        dispatcher(setFilteredArray(response));
     };
 
     const searchPizza = useCallback(
         debounce(() => {
-            axiosPizza();
+            axiosPizza(value);
         }, 1000), []
     );
 
@@ -33,11 +31,6 @@ const Header = () => {
 
     const onClearInput = () => {
         setValue('');
-        dispatcher(setFilteredArray(pizzaArray));
-        dispatcher(setCategory('Все'));
-        dispatcher(setSelected(1));
-        dispatcher(setClose(true));
-        dispatcher(setSortedName('sorted by'));
         ref.current.focus();
     };
 
