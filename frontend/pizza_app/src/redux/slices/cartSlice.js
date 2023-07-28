@@ -26,10 +26,15 @@ export const cartSlice = createSlice({
         },
         setTotalCountReduce: (state, action) => {
             state.count -= action.payload;
+        },
+        clearCart: (state) => {
+            state.cartArray = [];
+            state.count = 0;
+            state.totalSum = 0;
         }
     }
 
 });
 
-export const {setTotalCount, setTotalAmount, addPizza, deletePizza, setTotalAmountReduce, setTotalCountReduce} = cartSlice.actions;
+export const {setTotalCount, setTotalAmount, addPizza, deletePizza, setTotalAmountReduce, setTotalCountReduce, clearCart} = cartSlice.actions;
 export default cartSlice.reducer;
