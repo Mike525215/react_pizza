@@ -4,68 +4,81 @@
     justify-content: space-around;
     width: 80%;
     margin: 0 auto;
-    box-shadow: 1px 1px 9px grey;
+    border-bottom: solid 1px #EAEAEA;
     margin-top: 30px;
-    border-radius: 20px;
 }
 
 .cardImage {
-    width: 225px;
-    height: 225px;
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
 }
 
 .infoBlock {
-    width: 250px;
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.setCountBlock {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .title {
-    font-size: 24px;
+    font-size: 19px;
     font-weight: 600;
-    display: block;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
-.price {
-    font-size: 18px;
+.weight,
+.long{
+    font-size: 15px;
     font-weight: 600;
-    display: block;
+    color: #777;
 }
-.weight {
-    font-size: 18px;
-    font-weight: 600;
-    display: block;
-}
-.long {
-    font-size: 18px;
-    font-weight: 600;
-    display: block;
-}
+
 
 .increase,
 .decrease {
-    width: 30px;
-    height: 30px;
-    background: #EAEAEA;
-    font-size: 23px;
+    border: solid 2px #fe5f1e;
+    color: #fe5f1e;
+    font-size: 20px;
     border-radius: 20px;
+    padding: 0px 8px;
     text-align: center;
+    cursor: pointer;
 }
 
-.pizzaAmount {
+.pizzaCount {
     margin: 0px 20px;
-    font-size: 25px;
+    font-size: 20px;
+}
+
+.priceBlock {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.price {
+    font-size: 22px;
 }
 
 .deleteBtn {
-    border: none;
-    height: 30px;
-    width: 120px;
-    color: #fff;
-    background: rgb(254, 0, 33);
-    margin-top: 20px;
-    font-size: 17px;
-    font-weight: 600;
-    border-radius: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 1;
     cursor: pointer;
+}
+
+.deleteBtn img {
+    width: 35px;
+    height: 35px;
 }
 
 @media (max-width: 700px) {
@@ -76,12 +89,19 @@
         text-align: center;
     }
 
+    .infoBlock {
+        margin-left: 0;
+    }
+
     .cardImage {
-        margin-top: 25px;
+        width: 150px;
+        height: 150px;
+        margin-bottom: 25px;
+        margin: 10px 0px 25px 0px;
     }
 
     .deleteBtn {
-        margin-bottom: 25px;
+        margin: 25px 0px;
     }
 
     .setCountBlock {
