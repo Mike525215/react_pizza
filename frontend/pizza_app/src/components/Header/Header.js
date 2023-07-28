@@ -1,8 +1,7 @@
 import s from './Header.module.css';
 import {useSelector, useDispatch} from 'react-redux';
-import {useState, useRef, useCallback} from 'react';
+import {useState, useRef} from 'react';
 import {Link} from 'react-router-dom';
-import debounce from 'lodash.debounce';
 import axios from 'axios';
 import {setFilteredArray} from '../../redux/slices/pizzaSlice';
 
@@ -13,20 +12,14 @@ const Header = () => {
     const ref = useRef();
 
     const axiosPizza = async (value) => {
-        const request = await axios.get('http://127.0.0.1:8000/api/v1/pizza?search=' + value);
+        const changedValue = value[0].toUpperCase() + value.substring(1).toLowerCase();
+        const request = await axios.get('http://127.0.0.1:8000/api/v1/pizza?search=' + changedValue);
         const response = request.data;
         dispatcher(setFilteredArray(response));
     };
 
-    const searchPizza = useCallback(
-        debounce(() => {
-            axiosPizza(value);
-        }, 1000), []
-    );
-
     const onChangeInput = (event) => {
         setValue(event.target.value);
-        searchPizza();
     };
 
     const onClearInput = () => {
@@ -46,7 +39,15 @@ const Header = () => {
             </section>
             <section className={s.searchSection}>
                 <input className={s.searchForm} ref={ref} type="text" placeholder="Search pizza..."
-                       onChange={(event) => onChangeInput(event)} value={value} />
+                       onChange={(event) => onChangeInput(event)} value={value}
+                       onKeyDown={
+                           (event) => {
+                               if (event.key === 'Enter'){
+                                   axiosPizza(value);
+                                   setValue('');
+                               }
+                           }
+                       }/>
                 <button onClick={onClearInput}>
                 <img src="../close.png" alt="clear"
                      className={s.clearBtn} />
