@@ -67,7 +67,7 @@ button {
 }
 
 .cartSection {
-    width: 100px;
+    width: 110px;
     height: 45px;
     margin-right: 15px;
     background: #fe5f1e;
@@ -84,16 +84,23 @@ button {
 }
 
 .totalSumOrder {
-    margin-right: 10px;
     border-right: solid 1px;
-    width: 35px;
+    width: 50px;
+    text-align: center;
     font-size: 16px;
+}
+
+.countBlock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
 }
 
 .itemCount {
     font-size: 16px;
-    margin-top: 2px;
     margin-left: 2px;
+    margin-top: 2px;
 }
 
 @media (max-width: 1156px) {
