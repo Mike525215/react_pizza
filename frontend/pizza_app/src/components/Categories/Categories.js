@@ -1,6 +1,5 @@
 import s from './Categories.module.css';
 import {useDispatch, useSelector} from 'react-redux';
-import {useEffect, useRef} from 'react';
 import {setCategory, setSelected, setClose, setSortedName} from '../../redux/slices/categorySlice';
 import {setFilteredArray} from '../../redux/slices/pizzaSlice';
 import order from 'lodash.orderby';
@@ -11,20 +10,6 @@ const Categories = () => {
     const sortArray = ["price(ASC)", "price(DESC)", "name(ASC)", "name(DESC)"];
     const categories = [{name: 'Все', id: 1}, {name: 'Мясные', id: 2}, {name: 'Вегетерианские', id: 3},
                         {name: 'Гриль', id: 4}, {name: 'Острые', id: 5}, {name: 'Закрытые', id: 6}];
-    const ref = useRef();
-
-    useEffect(() => {
-        const handleCheck = (event) => {
-            if (!event.composedPath().includes(ref.current)) {
-                dispatcher(setClose(true))
-            }
-        }
-        document.body.addEventListener('click', (event) => handleCheck(event))
-
-        return () => {
-            document.body.removeEventListener('click', (event) => handleCheck(event))
-        }
-    }, []);
 
     const dispatcher = useDispatch();
     return (
@@ -46,7 +31,7 @@ const Categories = () => {
                 </ul>
             </div>
 
-            <div className={s.sortBlock} ref={ref} onClick={() => dispatcher(setClose(closed ? false : true))}>
+            <div className={s.sortBlock} onClick={() => dispatcher(setClose(closed ? false : true))}>
                 <img src="https://cdn-icons-png.flaticon.com/512/4655/4655143.png" alt="icon"
                      className={closed === true ? s.icon : s.icon + ' ' + s.rot} />
                 <span className={s.sortBy}>{sortName}</span>
