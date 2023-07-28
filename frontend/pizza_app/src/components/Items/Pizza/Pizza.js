@@ -40,6 +40,7 @@ const Pizza = (props) => {
                           dispatcher(setTotalCount());
                           dispatcher(setTotalAmount(props.pizza.price));
                           dispatcher(addPizza({
+                                    id: props.pizza.id,
                                     title: props.pizza.title,
                                     price: props.pizza.price,
                                     image: props.pizza.image,
