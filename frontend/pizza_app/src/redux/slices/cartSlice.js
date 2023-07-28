@@ -18,6 +18,10 @@ export const cartSlice = createSlice({
             const item = state.cartArray.filter(obj => obj.id === action.payload.id && obj.title === action.payload.title && obj.weight === action.payload.weight && obj.long === action.payload.long);
             item.length ? item[0].count++ : state.cartArray.push({...action.payload, count: 1});
         },
+        reducePizzaCount: (state, action) => {
+            const item = state.cartArray.filter(obj => obj.id === action.payload.id && obj.title === action.payload.title && obj.weight === action.payload.weight && obj.long === action.payload.long);
+            item[0].count--;
+        },
         deletePizza: (state, action) => {
             state.cartArray.splice(action.payload, 1);
         },
@@ -36,5 +40,5 @@ export const cartSlice = createSlice({
 
 });
 
-export const {setTotalCount, setTotalAmount, addPizza, deletePizza, setTotalAmountReduce, setTotalCountReduce, clearCart} = cartSlice.actions;
+export const {setTotalCount, setTotalAmount, addPizza, deletePizza, setTotalAmountReduce, setTotalCountReduce, clearCart, reducePizzaCount} = cartSlice.actions;
 export default cartSlice.reducer;
