@@ -35,9 +35,11 @@
 }
 
 .emptyCartImage {
-    width: 325px;
-    height: 275px;
+    width: 300px;
+    height: 225px;
     margin-top: 50px;
+    width: 275px;
+    height: 200px;
 }
 
 .title {
@@ -48,7 +50,7 @@
 .inner,
 .secondary {
     color: #777;
-    font-size: 17px;
+    font-size: 24px;
     margin-top: 5px;
 }
 
@@ -106,12 +108,37 @@
 }
 
 .pizzaList {
-    display: grid;
-    grid-template-column: 1fr;
-    row-gap: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.totalBlock {
+    display: flex;
+    width: 80%;
+    margin: 25px auto;
+    justify-content: space-between;
+}
+
+.totalCount,
+.totalAmount{
+    font-size: 20px;
 }
 
 @media (max-width: 500px) {
+
+    .emptyCartImage {
+        width: 275px;
+        height: 200px;
+    }
+
+    .title {
+        font-size: 29px;
+    }
+
+    .inner,
+    .secondary {
+        font-size: 16px;
+    }
 
     .cartTextInner {
         font-size: 18px;
@@ -119,5 +146,10 @@
 
     .clearCartText {
         font-size: 15px;
+    }
+
+    .totalCount,
+    .totalAmount{
+        font-size: 16px;
     }
 }

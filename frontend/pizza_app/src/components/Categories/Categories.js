@@ -32,7 +32,7 @@ const Categories = () => {
             </div>
 
             <div className={s.sortBlock} onClick={() => dispatcher(setClose(closed ? false : true))}>
-                <img src="https://cdn-icons-png.flaticon.com/512/4655/4655143.png" alt="icon"
+                <img src="../drop.png" alt="icon"
                      className={closed === true ? s.icon : s.icon + ' ' + s.rot} />
                 <span className={s.sortBy}>{sortName}</span>
                 <ul className={closed === true ? s.dropMenu + ' ' + s.close : s.dropMenu}>

@@ -37,7 +37,7 @@ const Header = () => {
     return (
         <header>
             <section className={s.logoSection}>
-                <img src="https://react-pizza-v2.vercel.app/static/media/pizza-logo.56ac87032d8f6fdf863326acd06c0d97.svg"
+                <img src="../logo.svg"
                      alt="pizza" className={s.logoImage} />
                 <div className={s.infoBlock}>
                     <span className={s.mainPart}>REACT PIZZA</span>

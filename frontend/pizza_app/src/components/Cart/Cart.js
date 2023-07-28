@@ -5,7 +5,7 @@ import {CartItem} from './CartItem/CartItem';
 import {setCategory, setSelected, setClose, setSortedName} from '../../redux/slices/categorySlice';
 import {clearCart} from '../../redux/slices/cartSlice';
 const Cart = () => {
-    const cartArray = useSelector(state => state.cart.cartArray);
+    const { cartArray, totalSum, count } = useSelector(state => state.cart);
     const dispatcher = useDispatch();
 
     return (
@@ -26,20 +26,24 @@ const Cart = () => {
                     <span className={s.title}>Корзина пустая 😕</span>
                     <span className={s.inner}>Вероятней всего, вы не заказывали ещё пиццу.</span>
                     <span className={s.secondary}>Для того, чтобы заказать пиццу, перейди на главную страницу.</span>
-                    <img src="https://react-pizza-v2.vercel.app/static/media/empty-cart.db905d1f4b063162f25b.png" alt="" className={s.emptyCartImage} />
+                    <img src="../emptyCart.png" alt="" className={s.emptyCartImage} />
                 </section> :
                 <div className={s.pizzaList}>
                     <div className={s.cartText}>
                         <div className={s.partOne}>
                             <img src="../cart.png" alt="cart" className={s.cartImage}/>
-                            <span className={s.cartTextInner}>Корзина</span>
+                            <span className={s.cartTextInner}>Cart</span>
                         </div>
                         <div className={s.partTwo} onClick={() => dispatcher(clearCart())}>
                             <img src="../delete.png" alt="cart" width="25" height="25" />
-                            <span className={s.clearCartText}>Очистить корзину</span>
+                            <span className={s.clearCartText}>Clear cart</span>
                         </div>
                     </div>
                     {cartArray.map((pizza, index) => <CartItem key={index} pizza={pizza} id={index} />)}
+                    <div className={s.totalBlock}>
+                        <span className={s.totalCount}>Total count: <b>{count}</b></span>
+                        <span className={s.totalAmount}>Total amount: <b>{totalSum} $</b></span>
+                    </div>
                 </div>
             }
             <Link to="/" className={s.backLink}
