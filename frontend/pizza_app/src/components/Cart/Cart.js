@@ -7,17 +7,7 @@ import {setCategory, setSelected, setClose, setSortedName} from '../../redux/sli
 const Cart = () => {
     const cartArray = useSelector(state => state.cart.cartArray);
     const dispatcher = useDispatch();
-    let html = '';
-    cartArray.length === 0 ?
-    html =
-            <section className={s.emptyCart}>
-                <span className={s.title}>Корзина пустая 😕</span>
-                <span className={s.inner}>Вероятней всего, вы не заказывали ещё пиццу.</span>
-                <span className={s.secondary}>Для того, чтобы заказать пиццу, перейди на главную страницу.</span>
-                <img src="https://react-pizza-v2.vercel.app/static/media/empty-cart.db905d1f4b063162f25b.png" alt="" className={s.emptyCartImage} />
-            </section>
-    :
-    html = <div className={s.pizzaList}>{cartArray.map((pizza, index) => <CartItem key={index} pizza={pizza} id={index} />)}</div>;
+
     return (
         <main>
             <header>
@@ -30,7 +20,16 @@ const Cart = () => {
                     </div>
                 </section>
             </header>
-            {html}
+            {
+                cartArray.length === 0 ?
+                <section className={s.emptyCart}>
+                    <span className={s.title}>Корзина пустая 😕</span>
+                    <span className={s.inner}>Вероятней всего, вы не заказывали ещё пиццу.</span>
+                    <span className={s.secondary}>Для того, чтобы заказать пиццу, перейди на главную страницу.</span>
+                    <img src="https://react-pizza-v2.vercel.app/static/media/empty-cart.db905d1f4b063162f25b.png" alt="" className={s.emptyCartImage} />
+                </section> :
+                <div className={s.pizzaList}>{cartArray.map((pizza, index) => <CartItem key={index} pizza={pizza} id={index} />)}</div>
+            }
             <Link to="/" className={s.backLink}
                   onClick={() => {
                       dispatcher(setCategory("Все"));
