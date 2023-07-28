@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import {CartItem} from './CartItem/CartItem';
 import {setCategory, setSelected, setClose, setSortedName} from '../../redux/slices/categorySlice';
-
+import {clearCart} from '../../redux/slices/cartSlice';
 const Cart = () => {
     const cartArray = useSelector(state => state.cart.cartArray);
     const dispatcher = useDispatch();
@@ -28,7 +28,19 @@ const Cart = () => {
                     <span className={s.secondary}>Для того, чтобы заказать пиццу, перейди на главную страницу.</span>
                     <img src="https://react-pizza-v2.vercel.app/static/media/empty-cart.db905d1f4b063162f25b.png" alt="" className={s.emptyCartImage} />
                 </section> :
-                <div className={s.pizzaList}>{cartArray.map((pizza, index) => <CartItem key={index} pizza={pizza} id={index} />)}</div>
+                <div className={s.pizzaList}>
+                    <div className={s.cartText}>
+                        <div className={s.partOne}>
+                            <img src="../cart.png" alt="cart" className={s.cartImage}/>
+                            <span className={s.cartTextInner}>Корзина</span>
+                        </div>
+                        <div className={s.partTwo} onClick={() => dispatcher(clearCart())}>
+                            <img src="../delete.png" alt="cart" width="25" height="25" />
+                            <span className={s.clearCartText}>Очистить корзину</span>
+                        </div>
+                    </div>
+                    {cartArray.map((pizza, index) => <CartItem key={index} pizza={pizza} id={index} />)}
+                </div>
             }
             <Link to="/" className={s.backLink}
                   onClick={() => {

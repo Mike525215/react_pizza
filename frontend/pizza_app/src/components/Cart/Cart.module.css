@@ -67,8 +67,57 @@
     margin-top: 25px;
 }
 
+.cartImage {
+    height: 30px;
+    width: 30px;
+}
+
+.cartText {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 25px;
+    height: 40px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.partOne,
+.partTwo{
+    display: flex;
+    height: 40px;
+    align-items: center;
+}
+
+.partTwo {
+    cursor: pointer;
+}
+
+.cartTextInner {
+    font-size: 22px;
+    font-weight: 700;
+    margin-left: 5px;
+}
+
+.clearCartText {
+    color: #777;
+    font-size: 17px;
+    font-weight: 600;
+}
+
 .pizzaList {
     display: grid;
     grid-template-column: 1fr;
     row-gap: 20px;
+}
+
+@media (max-width: 500px) {
+
+    .cartTextInner {
+        font-size: 18px;
+    }
+
+    .clearCartText {
+        font-size: 15px;
+    }
 }
