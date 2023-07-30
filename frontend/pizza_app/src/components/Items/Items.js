@@ -1,23 +1,16 @@
 import s from './Items.module.css';
 import {useSelector, useDispatch} from 'react-redux';
 import {Pizza} from './Pizza/Pizza';
-import {setArray, setFilteredArray, setError} from '../../redux/slices/pizzaSlice';
+import {fetchPizza} from '../../redux/slices/pizzaSlice';
 import {useEffect} from 'react';
-import axios from 'axios';
 
 const Items = () => {
     const category = useSelector(state => state.category.value);
     const {filteredArray, error} = useSelector(state => state.pizza);
     const dispatcher = useDispatch();
+
     const pizzaList = async () => {
-        try {
-            const request = await axios.get('http://127.0.0.1:8000/api/v1/pizza/');
-            const response = request.data;
-            dispatcher(setArray(response));
-            dispatcher(setFilteredArray(response));
-        } catch(err) {
-            dispatcher(setError(true));
-        }
+        dispatcher(fetchPizza());
     };
 
     useEffect(() => {

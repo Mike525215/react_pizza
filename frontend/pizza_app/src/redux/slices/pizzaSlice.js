@@ -1,4 +1,11 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
+import axios from 'axios';
+
+export const fetchPizza = createAsyncThunk('pizza/fetchPizza', async () => {
+    const request = await axios.get('http://127.0.0.1:8000/api/v1/pizza/');
+    const response = request.data;
+    return response;
+});
 
 export const pizzaSlice = createSlice({
     name: 'pizzaList',
@@ -16,6 +23,22 @@ export const pizzaSlice = createSlice({
         },
         setError: (state, action) => {
             state.error = action.payload;
+        }
+    },
+    extraReducers: {
+        [fetchPizza.pending]: (state) => {
+            console.log('loading');
+            state.pizzaArray = [];
+            state.filteredArray = [];
+        },
+        [fetchPizza.fulfilled]: (state, action) => {
+            state.pizzaArray = action.payload;
+            state.filteredArray = action.payload;
+        },
+        [fetchPizza.rejected]: (state) => {
+            state.error = true;
+            state.pizzaArray = [];
+            state.filteredArray = [];
         }
     }
 });
