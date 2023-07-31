@@ -7,11 +7,15 @@ const Pizza = (props) => {
     const [selectedWeight, setWeight] = useState(1);
     const [selectedLong, setLong] = useState(1);
     const dispatcher = useDispatch();
+    const [ingredients, setVisible] = useState(false);
 
     return (
         <div className={s.pizza}>
-            <img src={props.pizza.image}
+            <img src={props.pizza.image} onClick={() => setVisible(ingredients ? false : true)}
                  alt="pizza" className={s.pizzaImage} />
+            <div onClick={() => setVisible(ingredients ? false : true)} className={ingredients ? s.ingredients : s.ingredients + ' ' + s.closed}>
+                <span className={s.ingredientsText}><i>Ингредиенты:</i> {props.pizza.ingredients}</span>
+            </div>
             <span className={s.pizzaTitle}>{props.pizza.title}</span>
             <div className={s.pizzaWeight}>
                 <span className={selectedWeight === 1 ? s.weightStyle + ' ' + s.selected : s.weightStyle}

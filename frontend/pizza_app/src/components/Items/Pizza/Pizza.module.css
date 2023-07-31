@@ -2,12 +2,14 @@
     weight: 250px;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .pizzaImage {
     width: 225px;
     height: 225px;
     margin: 0 auto;
+    cursor: pointer;
 }
 
 .pizzaTitle {
@@ -68,4 +70,42 @@
 .addBtn:hover {
     background: #fe5f1e;
     color: #fff;
+}
+
+@keyframes openIngredients {
+    from {
+        transform: translateY(75px)
+    }
+    to {
+        transform: translateY(0px)
+    }
+}
+
+
+
+.ingredients {
+    position: absolute;
+    top: 90px;
+    height: 125px;
+    width: 90%;
+    left: 5%;
+    background: #fff;
+    box-shadow: 1px 1px 8px #EAEAEA;
+    z-index: 5;
+    opacity: .8;
+    text-align: center;
+    padding-top: 10px;
+    cursor: pointer;
+    animation: openIngredients 1.2s;
+}
+
+
+.ingredientsText {
+    font-size: 17px;
+    font-weight: 600;
+    color: #353434;
+}
+
+.closed {
+    display: none;
 }
