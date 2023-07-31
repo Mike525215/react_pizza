@@ -12,10 +12,14 @@ const Header = () => {
     const ref = useRef();
 
     const axiosPizza = async (value) => {
-        const changedValue = value[0].toUpperCase() + value.substring(1).toLowerCase();
-        const request = await axios.get('http://127.0.0.1:8000/api/v1/pizza?search=' + changedValue);
-        const response = request.data;
-        dispatcher(setFilteredArray(response));
+        try {
+            const changedValue = value[0].toUpperCase() + value.substring(1).toLowerCase();
+            const request = await axios.get('http://127.0.0.1:8000/api/v1/pizza?search=' + changedValue);
+            const response = request.data;
+            dispatcher(setFilteredArray(response));
+        } catch(err) {
+            return
+        }
     };
 
     const onChangeInput = (event) => {
