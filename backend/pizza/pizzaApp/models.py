@@ -1,9 +1,11 @@
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
 class Pizza(models.Model):
     title = models.CharField(max_length=50)
     price = models.IntegerField()
-    image = models.URLField()
+    image = models.ImageField(upload_to="pizzas/")
+    ingredients = models.CharField(max_length=500)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
 
     def __str__(self):
