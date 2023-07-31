@@ -75,6 +75,7 @@
     height: 200px;
     background: #fff;
     border-radius: 10px;
+    z-index: 5;
 }
 
 .close {

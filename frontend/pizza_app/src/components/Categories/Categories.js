@@ -46,8 +46,8 @@ const Categories = () => {
                                 : index === 1 ?
                                 dispatcher(setFilteredArray(order(filteredArray, ['price'], ['desc'])))
                                 : index === 2 ?
-                                dispatcher(setFilteredArray(order(filteredArray, ['name'], ['asc'])))
-                                : dispatcher(setFilteredArray(order(filteredArray, ['name'], ['desc'])))
+                                dispatcher(setFilteredArray(order(filteredArray, ['title'], ['asc'])))
+                                : dispatcher(setFilteredArray(order(filteredArray, ['title'], ['desc'])))
                                 }}>{name}</li>
                         })
                     }
