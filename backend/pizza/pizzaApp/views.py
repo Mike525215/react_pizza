@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework.filters import SearchFilter
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import *
@@ -14,3 +14,7 @@ class PizzaAPIView(ListAPIView):
 class CategoryAPIView(ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+class PizzaDetailAPIView(RetrieveAPIView):
+    queryset = Pizza.objects.all()
+    serializer_class = PizzaSerializer
