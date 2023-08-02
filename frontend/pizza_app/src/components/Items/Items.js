@@ -9,7 +9,7 @@ const Items = () => {
     const {filteredArray, error} = useSelector(state => state.pizza);
     const dispatcher = useDispatch();
 
-    const pizzaList = async () => {
+    const pizzaList = () => {
         dispatcher(fetchPizza());
     };
 
@@ -21,7 +21,7 @@ const Items = () => {
         <div className={s.pizzaList}>
             <span className={s.title}>{category} пиццы</span>
             {
-                error ?
+                error || !filteredArray.length ?
                 <div className={s.errorMessage}>
                     <span className={s.titleMessage}>Произошла ошибка 😕</span>
                     <span className={s.innerMessage}>К сожалению, не удалось получить пиццы.</span>
