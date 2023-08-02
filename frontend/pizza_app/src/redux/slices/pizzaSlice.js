@@ -7,6 +7,12 @@ export const fetchPizza = createAsyncThunk('pizza/fetchPizza', async () => {
     return response;
 });
 
+export const searchPizza = createAsyncThunk('pizza/searchPizza', async (value) => {
+     const changedValue = value[0].toUpperCase() + value.substring(1).toLowerCase();
+     const {data} = await axios.get('http://127.0.0.1:8000/api/v1/pizza?search=' + changedValue);
+     return data;
+})
+
 export const pizzaSlice = createSlice({
     name: 'pizzaList',
     initialState: {
@@ -27,7 +33,6 @@ export const pizzaSlice = createSlice({
     },
     extraReducers: {
         [fetchPizza.pending]: (state) => {
-            console.log('loading');
             state.pizzaArray = [];
             state.filteredArray = [];
         },
@@ -39,7 +44,17 @@ export const pizzaSlice = createSlice({
             state.error = true;
             state.pizzaArray = [];
             state.filteredArray = [];
+        },
+        [searchPizza.pending]: (state) => {
+            state.filteredArray = [];
+        },
+        [searchPizza.fulfilled]: (state, action) => {
+            state.filteredArray = action.payload;
+        },
+        [searchPizza.rejected]: (state) => {
+            state.filteredArray = [];
         }
+
     }
 });
 
