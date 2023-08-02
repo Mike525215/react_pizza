@@ -2,8 +2,7 @@ import s from './Header.module.css';
 import {useSelector, useDispatch} from 'react-redux';
 import {useState, useRef} from 'react';
 import {Link} from 'react-router-dom';
-import axios from 'axios';
-import {setFilteredArray} from '../../redux/slices/pizzaSlice';
+import {searchPizza} from '../../redux/slices/pizzaSlice';
 
 const Header = () => {
     const {count, totalSum} = useSelector(state => state.cart);
@@ -11,15 +10,8 @@ const Header = () => {
     const [value, setValue] = useState('');
     const ref = useRef();
 
-    const axiosPizza = async (value) => {
-        try {
-            const changedValue = value[0].toUpperCase() + value.substring(1).toLowerCase();
-            const request = await axios.get('http://127.0.0.1:8000/api/v1/pizza?search=' + changedValue);
-            const response = request.data;
-            dispatcher(setFilteredArray(response));
-        } catch(err) {
-            return
-        }
+    const axiosPizza = (value) => {
+        dispatcher(searchPizza(value));
     };
 
     const onChangeInput = (event) => {
