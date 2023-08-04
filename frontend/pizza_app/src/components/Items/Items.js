@@ -2,11 +2,12 @@ import s from './Items.module.css';
 import {useSelector, useDispatch} from 'react-redux';
 import {Pizza} from './Pizza/Pizza';
 import {fetchPizza} from '../../redux/slices/pizzaSlice';
+import {pizza} from '../../redux/slices/pizzaSlice';
 import {useEffect} from 'react';
 
 const Items = () => {
     const category = useSelector(state => state.category.value);
-    const {filteredArray, error} = useSelector(state => state.pizza);
+    const {filteredArray, error} = useSelector(pizza);
     const dispatcher = useDispatch();
 
     const pizzaList = () => {

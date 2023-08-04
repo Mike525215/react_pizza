@@ -58,6 +58,8 @@ export const pizzaSlice = createSlice({
     }
 });
 
+export const pizza = (state) => state.pizza;
+
 export const {setArray, setFilteredArray, setError} = pizzaSlice.actions;
 
 export default pizzaSlice.reducer;
