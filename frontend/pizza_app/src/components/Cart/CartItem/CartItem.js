@@ -13,9 +13,11 @@ const CartItem = (props) => {
             </div>
             <div className={s.setCountBlock}>
                     <span className={s.decrease} onClick={() => {
-                        dispatcher(reducePizzaCount(props.pizza));
-                        dispatcher(setTotalAmountReduce(props.pizza.price));
-                        dispatcher(setTotalCountReduce(1));
+                        if (props.pizza.count > 1) {
+                            dispatcher(reducePizzaCount(props.pizza));
+                            dispatcher(setTotalAmountReduce(props.pizza.price));
+                            dispatcher(setTotalCountReduce(1));
+                        }
                     }}>-</span>
                     <span className={s.pizzaCount}>{props.pizza.count}</span>
                     <span className={s.increase} onClick={() => {
