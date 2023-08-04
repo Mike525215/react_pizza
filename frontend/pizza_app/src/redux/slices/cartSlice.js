@@ -40,5 +40,7 @@ export const cartSlice = createSlice({
 
 });
 
+export const cart = (state) => state.cart;
+
 export const {setTotalCount, setTotalAmount, addPizza, deletePizza, setTotalAmountReduce, setTotalCountReduce, clearCart, reducePizzaCount} = cartSlice.actions;
 export default cartSlice.reducer;

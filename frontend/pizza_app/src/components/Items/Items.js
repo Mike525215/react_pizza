@@ -1,12 +1,12 @@
 import s from './Items.module.css';
 import {useSelector, useDispatch} from 'react-redux';
 import {Pizza} from './Pizza/Pizza';
-import {fetchPizza} from '../../redux/slices/pizzaSlice';
-import {pizza} from '../../redux/slices/pizzaSlice';
+import {fetchPizza, pizza} from '../../redux/slices/pizzaSlice';
+import {category} from '../../redux/slices/categorySlice';
 import {useEffect} from 'react';
 
 const Items = () => {
-    const category = useSelector(state => state.category.value);
+    const { value } = useSelector(category);
     const {filteredArray, error} = useSelector(pizza);
     const dispatcher = useDispatch();
 
@@ -20,7 +20,7 @@ const Items = () => {
 
     return (
         <div className={s.pizzaList}>
-            <span className={s.title}>{category} пиццы</span>
+            <span className={s.title}>{value} пиццы</span>
             {
                 error || !filteredArray.length ?
                 <div className={s.errorMessage}>

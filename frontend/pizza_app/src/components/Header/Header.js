@@ -3,9 +3,10 @@ import {useSelector, useDispatch} from 'react-redux';
 import {useState, useRef} from 'react';
 import {Link} from 'react-router-dom';
 import {searchPizza} from '../../redux/slices/pizzaSlice';
+import {cart} from '../../redux/slices/cartSlice';
 
 const Header = () => {
-    const {count, totalSum} = useSelector(state => state.cart);
+    const {count, totalSum} = useSelector(cart);
     const dispatcher = useDispatch();
     const [value, setValue] = useState('');
     const ref = useRef();

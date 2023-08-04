@@ -1,12 +1,11 @@
 import s from './Categories.module.css';
 import {useDispatch, useSelector} from 'react-redux';
-import {setCategory, setSelected, setClose, setSortedName} from '../../redux/slices/categorySlice';
-import {setFilteredArray} from '../../redux/slices/pizzaSlice';
-import {pizza} from '../../redux/slices/pizzaSlice';
+import {setCategory, setSelected, setClose, setSortedName, category} from '../../redux/slices/categorySlice';
+import {setFilteredArray, pizza} from '../../redux/slices/pizzaSlice';
 import order from 'lodash.orderby';
 
 const Categories = () => {
-    const {selected, closed, sortName} = useSelector(state => state.category);
+    const {selected, closed, sortName} = useSelector(category);
     const {pizzaArray, filteredArray} = useSelector(pizza);
     const sortArray = ["price(ASC)", "price(DESC)", "name(ASC)", "name(DESC)"];
     const categories = [{name: 'Все', id: 1}, {name: 'Мясные', id: 2}, {name: 'Вегетерианские', id: 3},
