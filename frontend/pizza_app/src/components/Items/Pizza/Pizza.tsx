@@ -3,7 +3,15 @@ import {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {setTotalCount, setTotalAmount, addPizza} from '../../../redux/slices/cartSlice';
 
-const Pizza = (props) => {
+const Pizza = (props: {
+    pizza: {
+        id: number,
+        image: string,
+        title: string,
+        ingredients: string,
+        price: number
+    }
+}) => {
     const [selectedWeight, setWeight] = useState(1);
     const [selectedLong, setLong] = useState(1);
     const dispatcher = useDispatch();

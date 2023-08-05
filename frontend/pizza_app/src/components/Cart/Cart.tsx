@@ -39,7 +39,10 @@ const Cart = () => {
                             <span className={s.clearCartText}>Clear cart</span>
                         </div>
                     </div>
-                    {cartArray.map((pizza, index) => <CartItem key={index} pizza={pizza} id={index} />)}
+                    {cartArray.map((pizza: {
+                                        id: number, image: string, title: string,
+                                        weight: number, long: number, count: number, price: number
+                                    }, index: number) => <CartItem key={index} pizza={pizza} id={index} />)}
                     <div className={s.totalBlock}>
                         <span className={s.totalCount}>Total count: <b>{count}</b></span>
                         <span className={s.totalAmount}>Total amount: <b>{totalSum} $</b></span>

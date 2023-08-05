@@ -26,7 +26,7 @@ const Categories = () => {
                                                    cat.name === 'Все'?
                                                    dispatcher(setFilteredArray(pizzaArray))
                                                    :
-                                                   dispatcher(setFilteredArray(pizzaArray.filter(pizza => pizza.category === cat.id)))
+                                                   dispatcher(setFilteredArray(pizzaArray.filter((pizza: {category: number}) => pizza.category === cat.id)))
                                                }}>{cat.name}</li>)}
                 </ul>
             </div>

@@ -1,5 +1,5 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import {App} from '../App';
+import {App} from '../App.tsx';
 import {Cart} from '../components/Cart/Cart';
 import {Provider} from 'react-redux';
 import {store} from '../redux/store';
