@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {Pizza} from './Pizza/Pizza';
 import {fetchPizza, pizza} from '../../redux/slices/pizzaSlice';
 import {category} from '../../redux/slices/categorySlice';
-import {useEffect} from 'react';
+import {useEffect, FC} from 'react';
 
 export type PizzaType = {
     id: number;
@@ -14,7 +14,7 @@ export type PizzaType = {
     category: number;
 }; 
 
-const Items = () => {
+const Items: FC = () => {
     const { value } = useSelector(category);
     const {filteredArray, error} = useSelector(pizza);
     const dispatcher = useDispatch();
