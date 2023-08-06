@@ -2,15 +2,8 @@ import s from './Pizza.module.css';
 import {useState, FC} from 'react';
 import {useDispatch} from 'react-redux';
 import {setTotalCount, setTotalAmount, addPizza} from '../../../redux/slices/cartSlice';
+import { PizzaType } from '../Items';
 
-type PizzaType = {
-    id: number;
-    image: string;
-    title: string;
-    ingredients: string;
-    price: number;
-    category: number;
-};
 
 type PropsType = {
     pizza: PizzaType;

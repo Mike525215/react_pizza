@@ -5,12 +5,22 @@ import {fetchPizza, pizza} from '../../redux/slices/pizzaSlice';
 import {category} from '../../redux/slices/categorySlice';
 import {useEffect} from 'react';
 
+export type PizzaType = {
+    id: number;
+    image: string;
+    title: string;
+    ingredients: string;
+    price: number;
+    category: number;
+}; 
+
 const Items = () => {
     const { value } = useSelector(category);
     const {filteredArray, error} = useSelector(pizza);
     const dispatcher = useDispatch();
 
     const pizzaList = () => {
+        //@ts-ignore
         dispatcher(fetchPizza());
     };
 
@@ -29,7 +39,7 @@ const Items = () => {
                     <span className={s.secondaryMessage}>Попробуйте повторить попытку позже.</span>
                 </div> :
                 <div className={s.content}>
-                    {filteredArray.map((pizza, index) => <Pizza pizza={pizza} key={index} />)}
+                    {filteredArray.map((pizza: PizzaType, index: number) => <Pizza pizza={pizza} key={index} />)}
                 </div>
             }
         </div>
