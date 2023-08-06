@@ -1,20 +1,21 @@
 import s from './Header.module.css';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {useState, useRef, FC} from 'react';
 import {Link} from 'react-router-dom';
-// import {searchPizza} from '../../redux/slices/pizzaSlice';
+import {searchPizza} from '../../redux/slices/pizzaSlice';
 import {cart} from '../../redux/slices/cartSlice';
 
 const Header: FC = () => {
     const {count, totalSum} = useSelector(cart);
-    // const dispatcher = useDispatch();
+    const dispatcher = useDispatch();
     const [value, setValue] = useState<string>("");
     const ref = useRef<HTMLInputElement>(null);
 
 
-    // const axiosPizza = (value: string) => {
-    //     dispatcher(searchPizza(value));
-    // };
+    const axiosPizza = (value: string) => {
+        //@ts-ignore
+        dispatcher(searchPizza(value));
+    };
 
     const onChangeInput = (event: any) => {
         setValue(event.target.value);
