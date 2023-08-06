@@ -2,16 +2,7 @@ import s from './CartItem.module.css';
 import {FC} from 'react';
 import {useDispatch} from 'react-redux';
 import {deletePizza, setTotalAmountReduce, setTotalCountReduce, addPizza, reducePizzaCount, setTotalCount, setTotalAmount} from '../../../redux/slices/cartSlice';
-
-type CartItemType = {
-    id: number;
-    image: string;
-    title: string;
-    weight: number;
-    long: number;
-    count: number;
-    price: number;
-}
+import { CartItemType } from '../Cart';
 
 type PropsType = {
     pizza: CartItemType;

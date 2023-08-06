@@ -6,7 +6,7 @@ import {CartItem} from './CartItem/CartItem';
 import {setCategory, setSelected, setClose, setSortedName} from '../../redux/slices/categorySlice';
 import {clearCart, cart} from '../../redux/slices/cartSlice';
 
-type AddedPizzaType = {
+export type CartItemType = {
     id: number;
     image: string;
     title: string;
@@ -14,7 +14,7 @@ type AddedPizzaType = {
     long: number;
     count: number;
     price: number;
-}
+};
 
 const Cart: FC = () => {
     const { cartArray, totalSum, count } = useSelector(cart);
@@ -51,7 +51,7 @@ const Cart: FC = () => {
                             <span className={s.clearCartText}>Clear cart</span>
                         </div>
                     </div>
-                    {cartArray.map((pizza: AddedPizzaType, index: number) => <CartItem key={index} pizza={pizza} id={index} />)}
+                    {cartArray.map((pizza: CartItemType, index: number) => <CartItem key={index} pizza={pizza} id={index} />)}
                     <div className={s.totalBlock}>
                         <span className={s.totalCount}>Total count: <b>{count}</b></span>
                         <span className={s.totalAmount}>Total amount: <b>{totalSum} $</b></span>
