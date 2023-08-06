@@ -39,14 +39,14 @@ const Header: FC = () => {
             <section className={s.searchSection}>
                 <input className={s.searchForm} ref={ref} type="text" placeholder="Search pizza..."
                        onChange={event => onChangeInput(event)} value={value}
-                    //    onKeyDown={
-                    //        (event) => {
-                    //            if (event.key === 'Enter'){
-                    //                axiosPizza(value);
-                    //                setValue('');
-                    //            }
-                    //        }
-                    //    }
+                       onKeyDown={
+                           (event) => {
+                               if (event.key === 'Enter'){
+                                   axiosPizza(value);
+                                   setValue('');
+                               }
+                           }
+                       }
                        />
                 <button onClick={onClearInput}>
                 <img src="../close.png" alt="clear"
