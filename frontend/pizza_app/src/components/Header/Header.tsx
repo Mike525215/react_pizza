@@ -1,28 +1,28 @@
 import s from './Header.module.css';
-import {useSelector, useDispatch} from 'react-redux';
-import {useState, useRef} from 'react';
+import {useSelector} from 'react-redux';
+import {useState, useRef, FC} from 'react';
 import {Link} from 'react-router-dom';
-import {searchPizza} from '../../redux/slices/pizzaSlice';
+// import {searchPizza} from '../../redux/slices/pizzaSlice';
 import {cart} from '../../redux/slices/cartSlice';
 
-const Header = () => {
+const Header: FC = () => {
     const {count, totalSum} = useSelector(cart);
-    const dispatcher = useDispatch();
-    const [value, setValue] = useState("");
-    const ref = useRef();
+    // const dispatcher = useDispatch();
+    const [value, setValue] = useState<string>("");
+    const ref = useRef<HTMLInputElement>(null);
 
 
-    const axiosPizza = (value) => {
-        dispatcher(searchPizza(value));
-    };
+    // const axiosPizza = (value: string) => {
+    //     dispatcher(searchPizza(value));
+    // };
 
-    const onChangeInput = (event) => {
+    const onChangeInput = (event: any) => {
         setValue(event.target.value);
     };
 
     const onClearInput = () => {
         setValue('');
-        ref.current.focus();
+        ref.current?.focus()
     };
 
     return (
@@ -38,14 +38,15 @@ const Header = () => {
             <section className={s.searchSection}>
                 <input className={s.searchForm} ref={ref} type="text" placeholder="Search pizza..."
                        onChange={event => onChangeInput(event)} value={value}
-                       onKeyDown={
-                           (event) => {
-                               if (event.key === 'Enter'){
-                                   axiosPizza(value);
-                                   setValue('');
-                               }
-                           }
-                       }/>
+                    //    onKeyDown={
+                    //        (event) => {
+                    //            if (event.key === 'Enter'){
+                    //                axiosPizza(value);
+                    //                setValue('');
+                    //            }
+                    //        }
+                    //    }
+                       />
                 <button onClick={onClearInput}>
                 <img src="../close.png" alt="clear"
                      className={s.clearBtn} />

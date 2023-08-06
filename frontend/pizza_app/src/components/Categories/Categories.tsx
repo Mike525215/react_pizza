@@ -1,15 +1,23 @@
 import s from './Categories.module.css';
+import {FC} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {setCategory, setSelected, setClose, setSortedName, category} from '../../redux/slices/categorySlice';
 import {setFilteredArray, pizza} from '../../redux/slices/pizzaSlice';
 import order from 'lodash.orderby';
 
-const Categories = () => {
+type categoriesType = {
+    name: string;
+    id: number;
+}
+
+const sortArray: string[] = ["price(ASC)", "price(DESC)", "name(ASC)", "name(DESC)"];
+
+const categories: categoriesType[] = [{name: 'Все', id: 1}, {name: 'Мясные', id: 2}, {name: 'Вегетерианские', id: 3},
+                    {name: 'Гриль', id: 4}, {name: 'Острые', id: 5}, {name: 'Закрытые', id: 6}];
+
+const Categories: FC = () => {
     const {selected, closed, sortName} = useSelector(category);
     const {pizzaArray, filteredArray} = useSelector(pizza);
-    const sortArray = ["price(ASC)", "price(DESC)", "name(ASC)", "name(DESC)"];
-    const categories = [{name: 'Все', id: 1}, {name: 'Мясные', id: 2}, {name: 'Вегетерианские', id: 3},
-                        {name: 'Гриль', id: 4}, {name: 'Острые', id: 5}, {name: 'Закрытые', id: 6}];
 
     const dispatcher = useDispatch();
     return (
@@ -30,7 +38,6 @@ const Categories = () => {
                                                }}>{cat.name}</li>)}
                 </ul>
             </div>
-
             <div className={s.sortBlock} onClick={() => dispatcher(setClose(closed ? false : true))}>
                 <img src="../drop.png" alt="icon"
                      className={closed === true ? s.icon : s.icon + ' ' + s.rot} />
@@ -53,7 +60,6 @@ const Categories = () => {
                     }
                 </ul>
             </div>
-
         </div>
     );
 

@@ -1,30 +1,35 @@
 import s from './Pizza.module.css';
-import {useState} from 'react';
+import {useState, FC} from 'react';
 import {useDispatch} from 'react-redux';
 import {setTotalCount, setTotalAmount, addPizza} from '../../../redux/slices/cartSlice';
 
-const Pizza = (props: {
-    pizza: {
-        id: number,
-        image: string,
-        title: string,
-        ingredients: string,
-        price: number
-    }
-}) => {
-    const [selectedWeight, setWeight] = useState(1);
-    const [selectedLong, setLong] = useState(1);
+type PizzaType = {
+    id: number;
+    image: string;
+    title: string;
+    ingredients: string;
+    price: number;
+    category: number;
+};
+
+type PropsType = {
+    pizza: PizzaType;
+}
+
+const Pizza: FC<PropsType> = ({ pizza }) => {
+    const [selectedWeight, setWeight] = useState<number>(1);
+    const [selectedLong, setLong] = useState<number>(1);
     const dispatcher = useDispatch();
-    const [ingredients, setVisible] = useState(false);
+    const [ingredients, setVisible] = useState<boolean>(false);
 
     return (
         <div className={s.pizza}>
-            <img src={props.pizza.image} onClick={() => setVisible(ingredients ? false : true)}
+            <img src={pizza.image} onClick={() => setVisible(ingredients ? false : true)}
                  alt="pizza" className={s.pizzaImage} />
             <div onClick={() => setVisible(ingredients ? false : true)} className={ingredients ? s.ingredients : s.ingredients + ' ' + s.closed}>
-                <span className={s.ingredientsText}><i>Ингредиенты:</i> {props.pizza.ingredients}</span>
+                <span className={s.ingredientsText}><i>Ингредиенты:</i> {pizza.ingredients}</span>
             </div>
-            <span className={s.pizzaTitle}>{props.pizza.title}</span>
+            <span className={s.pizzaTitle}>{pizza.title}</span>
             <div className={s.pizzaWeight}>
                 <span className={selectedWeight === 1 ? s.weightStyle + ' ' + s.selected : s.weightStyle}
                       onClick={() => setWeight(1)}>тонкое</span>
@@ -46,16 +51,16 @@ const Pizza = (props: {
                           }}>40 см</span>
             </div>
             <div className={s.pizzaPrice}>
-                <span className={s.part}>От {props.pizza.price} $</span>
+                <span className={s.part}>От {pizza.price} $</span>
                 <span className={s.part + ' ' + s.addBtn}
                       onClick={() => {
                           dispatcher(setTotalCount());
-                          dispatcher(setTotalAmount(props.pizza.price));
+                          dispatcher(setTotalAmount(pizza.price));
                           dispatcher(addPizza({
-                                    id: props.pizza.id,
-                                    title: props.pizza.title,
-                                    price: props.pizza.price,
-                                    image: props.pizza.image,
+                                    id: pizza.id,
+                                    title: pizza.title,
+                                    price: pizza.price,
+                                    image: pizza.image,
                                     weight: selectedWeight === 1 ? 'тонкое' : 'традиционное',
                                     long: selectedLong === 1 ? 26 : selectedLong === 2 ? 30 : 40}));
                       }}>+ Добавить</span>

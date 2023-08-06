@@ -1,10 +1,22 @@
 import s from './Cart.module.css';
 import {Link} from 'react-router-dom';
+import {FC} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {CartItem} from './CartItem/CartItem';
 import {setCategory, setSelected, setClose, setSortedName} from '../../redux/slices/categorySlice';
 import {clearCart, cart} from '../../redux/slices/cartSlice';
-const Cart = () => {
+
+type AddedPizzaType = {
+    id: number;
+    image: string;
+    title: string;
+    weight: number;
+    long: number;
+    count: number;
+    price: number;
+}
+
+const Cart: FC = () => {
     const { cartArray, totalSum, count } = useSelector(cart);
     const dispatcher = useDispatch();
 
@@ -39,10 +51,7 @@ const Cart = () => {
                             <span className={s.clearCartText}>Clear cart</span>
                         </div>
                     </div>
-                    {cartArray.map((pizza: {
-                                        id: number, image: string, title: string,
-                                        weight: number, long: number, count: number, price: number
-                                    }, index: number) => <CartItem key={index} pizza={pizza} id={index} />)}
+                    {cartArray.map((pizza: AddedPizzaType, index: number) => <CartItem key={index} pizza={pizza} id={index} />)}
                     <div className={s.totalBlock}>
                         <span className={s.totalCount}>Total count: <b>{count}</b></span>
                         <span className={s.totalAmount}>Total amount: <b>{totalSum} $</b></span>
